@@ -47,6 +47,7 @@ var questionsEl = document.querySelector("#questions");
 var choicesEl = document.querySelector("#options");
 var submit = document.querySelector("#submit-score");
 var nameEl = document.querySelector("#name");
+var feedbackEl = document.querySelector("#feedback")
 // Webpage initial state
 var currentQuestionIndex = 0
 var time = questions.length * 20
@@ -60,7 +61,7 @@ function startQuiz() {
     questionsEl.removeAttribute("class");
     getQuestion();
 }
-// Displays questions and answer and loops through the array
+// Displays questions and answer and loops through the array and create btns
 function getQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
     var promptEl = document.querySelector("#prompt");
@@ -78,6 +79,25 @@ function getQuestion() {
 function questionClick() {
     if (this.value !== questions[currentQuestionIndex].correctAnswer) {
         time -= 10;
+        if (time < 0 ) {
+            time = 0
+        }
+        timerEl.textContent = time;
+        feedbackEl.textContent = `Sorry the answer was ${questions[currentQestionIndex].answer}`;
+        feedbackEl.style.color = "red";
+    } else {
+        feedbackEl.textContent = "Good job!";
+        feedbackEl.style.color = "green";
+    }
+    feedbackEl.setAttribute = ("class", "feedback");
+    setTimeout(function() {
+        feedbackEl.setAtrribute("class", "feedback-hide");
+    }, 1000);
+    currentQuestionIndex++;
+    if (currentQuestionIndex === questions.length) {
+        quizEnd();
+    }else {
+        getQuestion();
     }
 }
 
