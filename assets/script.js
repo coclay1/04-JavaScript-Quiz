@@ -117,4 +117,16 @@ function clockTime() {
         quizEnd();
     }
 }
-
+// Save User score and name
+function saveData {
+    var name = nameEl.value.trim()
+    if (name !== "") {
+        var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+        var newScore = {
+            score: time,
+            name: name
+        };
+        highscores.push(newScore);
+        localStorage.setItem("highscores", JSON.stringify(highscores))
+    }
+}
