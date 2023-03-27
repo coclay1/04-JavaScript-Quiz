@@ -9,14 +9,36 @@
 </head>
 <body>
     <header>
-        <h1>JavaScript Quiz</h1>
+        <div>
+            <a href="highscore.html"><button class="score-header" id="view-high-scores">View High Scores</button></a>
+        </div>
+        <div class="timer">
+            <p>Timer:
+                <span id="timer">0</span>
+            </p>
+        </div>
     </header>
-    <section>
-        <p class="question"></p>
-        <ul class="choiceList"></ul>
-        <p class="result"></p>
-        <button>Play Again?</button>
-    </section>
+
+    <main class="quiz">
+        <section id="quiz-start">
+            <div class="landing-page" id="start-screen">
+                <h1>JavaScript Quiz</h1>
+                <button id="start-quiz">Start Quiz</button>
+            </div>
+        </section>
+        <section class="hide" id="questions">
+            <h2 id="question-words"></h2>
+            <div class="options" id="options"></div>
+        </section>
+        <section class="hide" id="quiz-end">
+            <h2>Done</h2>
+            <p>Your Score: <span id="final-score"></span></p>
+            <p>
+                Please enter your name: <input type="text" id="name" max="3"/>
+                <button id="submit-score">Submit</button>
+            </p>
+        </section>
+    </main>
     <script src="./assets/script.js"></script>
 </body>
 </html>
