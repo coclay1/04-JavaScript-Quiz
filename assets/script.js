@@ -54,7 +54,7 @@ var time = questions.length * 20
 var timerId;
 // Start Quiz and hide initial page
 function startQuiz() {
-    timerId = setInterval(clockTick, 1000);
+    timerId = setInterval(clockTime, 1000);
     timerEl.textContent = time;
     var startScreenEl = document.querySelector("start-screen");
     startScreenEl.setAttribute("class", "hide");
@@ -98,6 +98,23 @@ function questionClick() {
         quizEnd();
     }else {
         getQuestion();
+    }
+}
+// End quiz shows final score
+function quizEnd() {
+    clearInterval(timerId);
+    var endScreenEl = document.querySelector("#quiz-end");
+    endScreenEl.removeAttribute("class");
+    var finalScoreEl = document.querySelector("#final-score");
+    finalScoreEl.textContent = time;
+    questionsEl.setAttribute("class", "hide");
+}
+// To end quiz if timer = 0
+function clockTime() {
+    time--;
+    timerEl.textContent = time;
+    if time (< 0) {
+        quizEnd();
     }
 }
 
