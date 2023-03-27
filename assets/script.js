@@ -113,12 +113,12 @@ function quizEnd() {
 function clockTime() {
     time--;
     timerEl.textContent = time;
-    if time (< 0) {
+    if (time <= 0) {
         quizEnd();
     }
 }
 // Save User score and name
-function saveData {
+function saveData() {
     var name = nameEl.value.trim()
     if (name !== "") {
         var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
@@ -127,6 +127,10 @@ function saveData {
             name: name
         };
         highscores.push(newScore);
-        localStorage.setItem("highscores", JSON.stringify(highscores))
+        localStorage.setItem("highscores", JSON.stringify(highscores));
     }
 }
+submitBtn.addEventListener("click", function() {
+    saveData();
+})
+
