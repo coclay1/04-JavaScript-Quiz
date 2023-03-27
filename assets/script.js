@@ -56,8 +56,28 @@ function startQuiz() {
     timerId = setInterval(clockTick, 1000);
     timerEl.textContent = time;
     var startScreenEl = document.querySelector("start-screen");
-    startScreen.setAttribute("class", "hide");
+    startScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
     getQuestion();
+}
+// Displays questions and answer and loops through the array
+function getQuestion() {
+    var currentQuestion = questions[currentQuestionIndex];
+    var promptEl = document.querySelector("#prompt");
+    promptEl.textContent = currentQuestion.question;
+    choicesEl.innerHTML = "";
+    currentQuestion.choices.forEach(function(choice,i) {
+        var choiceBtn = document.createElement("button");
+        choiceBtn.setAtrribute("value", choice);
+        choiceBtn.textContent = i + 1 + "." + choice;
+        choiceBtn.onClick = questionClick;
+        choicesEl.qppendChild(choiceBtn);
+    }); 
+}
+// Checks for answer and deduct time from timer if wrong
+function questionClick() {
+    if (this.value !== questions[currentQuestionIndex].correctAnswer) {
+        time -= 10;
+    }
 }
 
