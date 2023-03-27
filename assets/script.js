@@ -1,3 +1,4 @@
+// Q&A List
 var questions = [{
     question: "1. Inside which HTML element do we put the JavaScript?",
     choices: ["<scripting>", "<script>", "<js>", "<javascript>"],
@@ -39,10 +40,44 @@ var questions = [{
     choices: ["=", "-", "*", "x"],
     correctAnswer: "="
 }];
-
+// Dom Elements
 var timerEl = document.querySelector("#timer");
 var start = document.querySelector("#start-quiz");
 var questionsEl = document.querySelector("#questions");
 var choicesEl = document.querySelector("#options");
 var submit = document.querySelector("#submit-score");
 var nameEl = document.querySelector("#name");
+// Webpage initial state
+var currentQuestionIndex = 0
+var time = questions.length * 20
+var timerId;
+// Start Quiz and hide initial page
+function startQuiz() {
+    timerId = setInterval(clockTick, 1000);
+    timerEl.textContent = time;
+    var startScreenEl = document.querySelector("start-screen");
+    startScreenEl.setAttribute("class", "hide");
+    questionsEl.removeAttribute("class");
+    getQuestion();
+}
+// Displays questions and answer and loops through the array
+function getQuestion() {
+    var currentQuestion = questions[currentQuestionIndex];
+    var promptEl = document.querySelector("#prompt");
+    promptEl.textContent = currentQuestion.question;
+    choicesEl.innerHTML = "";
+    currentQuestion.choices.forEach(function(choice,i) {
+        var choiceBtn = document.createElement("button");
+        choiceBtn.setAtrribute("value", choice);
+        choiceBtn.textContent = i + 1 + "." + choice;
+        choiceBtn.onClick = questionClick;
+        choicesEl.qppendChild(choiceBtn);
+    }); 
+}
+// Checks for answer and deduct time from timer if wrong
+function questionClick() {
+    if (this.value !== questions[currentQuestionIndex].correctAnswer) {
+        time -= 10;
+    }
+}
+
