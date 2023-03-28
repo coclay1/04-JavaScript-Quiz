@@ -134,7 +134,7 @@ function renderSaveData() {
     }
 }
 
-
+// submit high score
 submitBtn.addEventListener("click", function() {
     endingEl.setAttribute("class", "hide")
     feedbackEl.setAttribute("class", "hide")
