@@ -123,7 +123,7 @@ function clockTime() {
 // Stores highscore and then displays it 
 function saveData() {
     var highscores = {
-        name: nameEl.value(),
+        name: nameEl.value().trim,
         score: time
     };
     localStorage.setItem("highscores", JSON.stringify(highscores));
