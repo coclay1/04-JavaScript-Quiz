@@ -51,6 +51,7 @@ var feedbackEl = document.querySelector("#feedback")
 var startBtn = document.querySelector("#start-quiz")
 var restartBtn = document.querySelector("#restart")
 var highScoreBtn = document.querySelector("#view-high-scores")
+var endingEl = document.querySelector("#quiz-end")
 // Webpage initial state
 var currentQuestionIndex = 0
 var time = questions.length * 20
@@ -86,16 +87,12 @@ function questionClick() {
             time = 0
         }
         timerEl.textContent = time;
-        feedbackEl.textContent = `Wrong! The correct answer was ${questions[currentQuestionIndex].correctAnswer}.`;
+        feedbackEl.textContent = "Wrong!";
         feedbackEl.style.color = "red";
     } else {
         feedbackEl.textContent = "Good job!";
         feedbackEl.style.color = "green";
-    }
-    feedbackEl.setAttribute = ("class", "feedback");
-    setTimeout(function() {
-        feedbackEl.setAttribute = ("class", "feedback-hide");
-    }, 1000);
+    };
     currentQuestionIndex++;
     if (currentQuestionIndex === questions.length) {
         quizEnd();
@@ -138,7 +135,14 @@ function renderSaveData() {
 }
 
 
-submitBtn.addEventListener("click", saveData)
+submitBtn.addEventListener("click", function() {
+    endingEl.setAttribute("class", "hide")
+    feedbackEl.setAttribute("class", "hide")
+    restartBtn.removeAttribute("class")
+    document.querySelector(".topscores").removeAttribute("class", "hide")
+    saveData();
+    renderSaveData();
+})
 // Start Game
 startBtn.addEventListener("click", function() {
     startQuiz();
@@ -149,5 +153,6 @@ restartBtn.addEventListener("click", function() {
 })
 // Renders last saved score
 highScoreBtn.addEventListener("click", function() {
+    document.querySelector(".topscores").removeAttribute("class", "hide")
     renderSaveData();
 })
