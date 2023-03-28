@@ -49,6 +49,7 @@ var submitBtn = document.querySelector("#submit-score");
 var nameEl = document.querySelector("#name");
 var feedbackEl = document.querySelector("#feedback")
 var startBtn = document.querySelector("#start-quiz")
+var restartBtn = document.querySelector("#restart")
 // Webpage initial state
 var currentQuestionIndex = 0
 var time = questions.length * 20
@@ -92,7 +93,7 @@ function questionClick() {
     }
     feedbackEl.setAttribute = ("class", "feedback");
     setTimeout(function() {
-        feedbackEl.setAttribute("class", "feedback-hide");
+        feedbackEl.setAttribute = ("class", "feedback-hide");
     }, 1000);
     currentQuestionIndex++;
     if (currentQuestionIndex === questions.length) {
@@ -135,4 +136,7 @@ submitBtn.addEventListener("click", saveData)
 // Start Game
 startBtn.addEventListener("click", function() {
     startQuiz();
+})
+restartBtn.addEventListener("click", function() {
+    location.reload();
 })

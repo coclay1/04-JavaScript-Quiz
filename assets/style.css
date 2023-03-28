@@ -45,3 +45,7 @@ button:hover {
 .hide {
     display: none;
 }
+
+.feedback {
+    font-size: bolder;
+}
