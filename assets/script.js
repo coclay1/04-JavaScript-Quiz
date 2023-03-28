@@ -120,7 +120,7 @@ function clockTime() {
 // Stores highscore and then displays it 
 function saveData() {
     var highscores = {
-        name: nameEl.value().trim,
+        name: nameEl.value.trim(),
         score: time
     };
     localStorage.setItem("highscores", JSON.stringify(highscores));
@@ -139,7 +139,7 @@ submitBtn.addEventListener("click", function() {
     endingEl.setAttribute("class", "hide")
     feedbackEl.setAttribute("class", "hide")
     restartBtn.removeAttribute("class")
-    document.querySelector(".topscores").removeAttribute("class", "hide")
+    document.querySelector(".topscores").removeAttribute("class", "hide");
     saveData();
     renderSaveData();
 })
