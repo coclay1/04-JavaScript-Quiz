@@ -15,7 +15,7 @@ p {
 .landing {
     text-align: center;
 }
-
+/* fix highscore btn and timer to a fixed postion */
 .score-header {
     position: absolute;
     top: 15px;
@@ -34,6 +34,7 @@ button {
     color: crimson;
     padding: 5px;
 }
+/* change background color of btns when hover over */
 button:hover {
     background-color: bisque;
 }
@@ -41,11 +42,15 @@ button:hover {
 .options button {
     display: block;
 }
-
+/* hides content */
 .hide {
     display: none;
 }
 
 .feedback {
     font-size: bolder;
+}
+
+.topscores {
+    font-size: 25px;
 }

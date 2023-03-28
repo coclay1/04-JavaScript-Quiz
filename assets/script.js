@@ -50,6 +50,7 @@ var nameEl = document.querySelector("#name");
 var feedbackEl = document.querySelector("#feedback")
 var startBtn = document.querySelector("#start-quiz")
 var restartBtn = document.querySelector("#restart")
+var highScoreBtn = document.querySelector("#view-high-scores")
 // Webpage initial state
 var currentQuestionIndex = 0
 var time = questions.length * 20
@@ -119,24 +120,34 @@ function clockTime() {
         quizEnd();
     }
 }
-// Save User score and name
+// Stores highscore and then displays it 
 function saveData() {
-    var name = nameEl.value.trim()
-    if (name !== "") {
-        var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-        var newScore = {
-            score: time,
-            name: name
-        };
-        highscores.push(newScore);
-        localStorage.setItem("highscores", JSON.stringify(highscores));
+    var highscores = {
+        name: nameEl.value.trim(),
+        score: time
+    };
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+}
+function renderSaveData() {
+    var lastScore = JSON.parse(localStorage.getItem("highscores"))
+    if (lastScore !== null) {
+        document.querySelector("#topscores").innerHTML = lastScore.name + " "+ lastScore.score + " points";
+    } else {
+        return;
     }
 }
+
+
 submitBtn.addEventListener("click", saveData)
 // Start Game
 startBtn.addEventListener("click", function() {
     startQuiz();
 })
+// Takes user back to start of page
 restartBtn.addEventListener("click", function() {
     location.reload();
+})
+// Renders last saved score
+highScoreBtn.addEventListener("click", function() {
+    renderSaveData();
 })
