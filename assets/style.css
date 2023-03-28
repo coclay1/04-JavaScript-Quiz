@@ -1,0 +1,47 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.quiz,
+.scores {
+    margin:50px auto;
+    max-width: 400px;
+}
+p {
+    margin:15px;
+    display: inline-block;
+}
+
+.landing {
+    text-align: center;
+}
+
+.score-header {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.timer {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+button {
+    display: inline-block;
+    cursor: pointer;
+    color: crimson;
+    padding: 5px;
+}
+button:hover {
+    background-color: bisque;
+}
+
+.options button {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
