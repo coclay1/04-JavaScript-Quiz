@@ -45,9 +45,10 @@ var timerEl = document.querySelector("#timer");
 var start = document.querySelector("#start-quiz");
 var questionsEl = document.querySelector("#questions");
 var choicesEl = document.querySelector("#options");
-var submit = document.querySelector("#submit-score");
+var submitBtn = document.querySelector("#submit-score");
 var nameEl = document.querySelector("#name");
 var feedbackEl = document.querySelector("#feedback")
+var startBtn = document.querySelector("#start-quiz")
 // Webpage initial state
 var currentQuestionIndex = 0
 var time = questions.length * 20
@@ -56,7 +57,7 @@ var timerId;
 function startQuiz() {
     timerId = setInterval(clockTime, 1000);
     timerEl.textContent = time;
-    var startScreenEl = document.querySelector("start-screen");
+    var startScreenEl = document.querySelector("#start-screen");
     startScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
     getQuestion();
@@ -69,10 +70,10 @@ function getQuestion() {
     choicesEl.innerHTML = "";
     currentQuestion.choices.forEach(function(choice,i) {
         var choiceBtn = document.createElement("button");
-        choiceBtn.setAtrribute("value", choice);
-        choiceBtn.textContent = i + 1 + "." + choice;
-        choiceBtn.onClick = questionClick;
-        choicesEl.qppendChild(choiceBtn);
+        choiceBtn.setAttribute("value", choice);
+        choiceBtn.textContent = i + 1 + ". " + choice;
+        choiceBtn.onclick = questionClick;
+        choicesEl.appendChild(choiceBtn);
     }); 
 }
 // Checks for answer and deduct time from timer if wrong
@@ -83,7 +84,7 @@ function questionClick() {
             time = 0
         }
         timerEl.textContent = time;
-        feedbackEl.textContent = `Sorry the answer was ${questions[currentQestionIndex].answer}`;
+        feedbackEl.textContent = `Wrong! The correct answer was ${questions[currentQuestionIndex].correctAnswer}.`;
         feedbackEl.style.color = "red";
     } else {
         feedbackEl.textContent = "Good job!";
@@ -91,7 +92,7 @@ function questionClick() {
     }
     feedbackEl.setAttribute = ("class", "feedback");
     setTimeout(function() {
-        feedbackEl.setAtrribute("class", "feedback-hide");
+        feedbackEl.setAttribute("class", "feedback-hide");
     }, 1000);
     currentQuestionIndex++;
     if (currentQuestionIndex === questions.length) {
@@ -130,7 +131,8 @@ function saveData() {
         localStorage.setItem("highscores", JSON.stringify(highscores));
     }
 }
-submitBtn.addEventListener("click", function() {
-    saveData();
+submitBtn.addEventListener("click", saveData)
+// Start Game
+startBtn.addEventListener("click", function() {
+    startQuiz();
 })
-
